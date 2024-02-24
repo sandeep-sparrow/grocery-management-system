@@ -11,5 +11,6 @@ public interface GroceryService {
     List<GroceryItemDto> getAllGroceryItems();
     GroceryItemDto updateGroceryItem(Long groceryId, GroceryItemDto groceryItemDto);
     void deleteGroceryItem(Long groceryId);
+    List<GroceryItemDto> getAllGroceryItemsByCategoryId(Long categoryId);
 
 }

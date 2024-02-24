@@ -98,4 +98,15 @@ public class GroceryServiceImpl implements GroceryService{
         groceryRepository.deleteById(groceryId);
     }
 
+    @SuppressWarnings("null")
+    @Override
+    public List<GroceryItemDto> getAllGroceryItemsByCategoryId(Long categoryId) {
+        
+        categoryRepository.findById(categoryId)
+        .orElseThrow(() -> new ResourceNotFoundException("Category Item not exists with given categoryId: " + categoryId));
+        List<GroceryItem> groceryItems = groceryRepository.getAllByCategoryId(categoryId);
+
+        return GroceryItemMapper.mapToGroceryItemDtoList(groceryItems);
+    }
+
 }

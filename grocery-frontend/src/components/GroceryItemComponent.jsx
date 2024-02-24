@@ -24,14 +24,12 @@ export default function GroceryItemComponent() {
         console.log("Saved Grocery Item tobe: ", values);
         if(id){
             updateGroceryItem(id, values).then((response) => {
-                console.log("Response from server: ", response);
                 navigator("/grocery-items"); 
             }).catch((error) => {
                 console.log("Error from server: ", error);
             });
         }else{
             addGroceryItem(values).then((response) => {
-                console.log("Response from server: ", response);
                 navigator("/grocery-items");
             }).catch((error) => {
                 console.log("Error from server: ", error);
@@ -80,7 +78,6 @@ export default function GroceryItemComponent() {
         if(id){
             console.log("Grocery Id: ", id);
             getGroceryItem(id).then((response) => {
-                console.log("Response from server: ", response);
                 formik.setValues(response.data);
             }).catch((error) => {
                 console.log("Error from server: ", error);
@@ -90,7 +87,6 @@ export default function GroceryItemComponent() {
 
     useEffect(() => {
         getAllCategory().then((response) => {
-            console.log("Response from server: ", response);
             setCategories(response.data);
         });
     }, [])

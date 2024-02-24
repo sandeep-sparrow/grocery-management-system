@@ -6,6 +6,10 @@ export function getAllGroceryItems() {
     return axios.get(REST_API_BASE_URL + "/getAll");
 }
 
+export function getAllGroceryItemsByCategoryId(categoryId) {
+    return axios.get(REST_API_BASE_URL + "/getAll/" + categoryId);
+}
+
 export function getGroceryItem(groceryId) {
     return axios.get(REST_API_BASE_URL + "/" + groceryId);
 }
