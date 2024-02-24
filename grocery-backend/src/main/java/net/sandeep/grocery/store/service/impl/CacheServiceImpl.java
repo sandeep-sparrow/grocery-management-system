@@ -13,6 +13,7 @@ public class CacheServiceImpl implements CacheService {
 
     private final CacheManager cacheManager;
 
+    @SuppressWarnings("null")
     @Override
     public Cache getCache(String cacheName){
         return cacheManager.getCache(cacheName);
