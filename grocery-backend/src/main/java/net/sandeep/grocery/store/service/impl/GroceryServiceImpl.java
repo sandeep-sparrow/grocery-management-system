@@ -55,8 +55,9 @@ public class GroceryServiceImpl implements GroceryService{
 
     @Override
     @CachePut(cacheNames = "groceryItems", key = "#groceryId")
+    @SuppressWarnings("null")
     public GroceryItemDto updateGroceryItem(Long groceryId, GroceryItemDto groceryItemDto) {
-       GroceryItem groceryItem = groceryRepository.findById(groceryId)
+    GroceryItem groceryItem = groceryRepository.findById(groceryId)
             .orElseThrow(() -> new ResourceNotFoundException("Grocery Item not exists with given groceryId: " + groceryId));
 
        groceryItem.setGroceryName(groceryItemDto.getGroceryName());
@@ -70,6 +71,7 @@ public class GroceryServiceImpl implements GroceryService{
        return GroceryItemMapper.mapToGroceryItemDto(updatedGroceryItem);
     }
 
+    @SuppressWarnings("null")
     @Override
     @CacheEvict(cacheNames = "groceryItems", key = "#groceryId", beforeInvocation = true, condition = "#groceryId != null")
     public void deleteGroceryItem(Long groceryId) {
