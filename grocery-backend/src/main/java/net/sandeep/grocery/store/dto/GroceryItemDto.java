@@ -14,5 +14,6 @@ public class GroceryItemDto {
     private int groceryQuantity;
     private int groceryUnit;
     private double groceryUnitPrice;
+    private Long categoryId;
     
 }

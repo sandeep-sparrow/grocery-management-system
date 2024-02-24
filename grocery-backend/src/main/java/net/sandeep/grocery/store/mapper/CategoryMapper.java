@@ -3,7 +3,9 @@ package net.sandeep.grocery.store.mapper;
 import java.util.List;
 
 import net.sandeep.grocery.store.dto.CategoryDto;
+import net.sandeep.grocery.store.dto.GroceryItemDto;
 import net.sandeep.grocery.store.model.Category;
+import net.sandeep.grocery.store.model.GroceryItem;
 
 public class CategoryMapper {
 
@@ -29,4 +31,7 @@ public class CategoryMapper {
         return categories.stream().map(CategoryMapper::mapToCategoryDto).toList();
     }
     
+    public static List<GroceryItemDto> mapToGroceryItemDtoList(List<GroceryItem> groceries) {
+        return groceries.stream().map(GroceryItemMapper::mapToGroceryItemDto).toList();
+    }
 }

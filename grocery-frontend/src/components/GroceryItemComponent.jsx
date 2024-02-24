@@ -2,10 +2,12 @@ import React, {useEffect} from "react"
 import { useFormik } from "formik"
 import { addGroceryItem, getGroceryItem, updateGroceryItem } from "../services/GroceryService";
 import { useNavigate, useParams } from "react-router-dom";
+import { getAllCategory } from "../services/CategoryService";
 
 export default function GroceryItemComponent() {
 
     const navigator = useNavigate();
+    const [categories, setCategories] = React.useState([]);
     
     const { id } = useParams();
 
@@ -14,21 +16,20 @@ export default function GroceryItemComponent() {
         groceryDescription: "",
         groceryQuantity: "",
         groceryUnit: "",
-        groceryUnitPrice: ""
+        groceryUnitPrice: "",
+        categoryId: "",
     };
 
     const onSubmit = values => {
         console.log("Saved Grocery Item tobe: ", values);
         if(id){
             updateGroceryItem(id, values).then((response) => {
-                console.log("Response from server: ", response);
                 navigator("/grocery-items"); 
             }).catch((error) => {
                 console.log("Error from server: ", error);
             });
         }else{
             addGroceryItem(values).then((response) => {
-                console.log("Response from server: ", response);
                 navigator("/grocery-items");
             }).catch((error) => {
                 console.log("Error from server: ", error);
@@ -53,6 +54,9 @@ export default function GroceryItemComponent() {
         if(!values.groceryUnitPrice){
             errors.groceryUnitPrice = "Unit Price is Required";
         }
+        if(!values.categoryId){
+            errors.categoryId = "Category is Required";
+        }
         return errors;
     };
 
@@ -74,13 +78,18 @@ export default function GroceryItemComponent() {
         if(id){
             console.log("Grocery Id: ", id);
             getGroceryItem(id).then((response) => {
-                console.log("Response from server: ", response);
                 formik.setValues(response.data);
             }).catch((error) => {
                 console.log("Error from server: ", error);
             })
         }
     }, [id])
+
+    useEffect(() => {
+        getAllCategory().then((response) => {
+            setCategories(response.data);
+        });
+    }, [])
 
   return (
     <div className="container">
@@ -159,6 +168,22 @@ export default function GroceryItemComponent() {
                             />
                             {formik.touched.groceryUnitPrice && formik.errors.groceryUnitPrice ? (
                                 <div className="error">{formik.errors.groceryUnitPrice}</div>) : null}
+                        </div>
+                        <div className="form-group mb-2">
+                            <label className="form-label">Grocery Category:</label>
+                            <select 
+                                value={formik.values.categoryId} 
+                                onChange={formik.handleChange} 
+                                onBlur={formik.handleBlur} 
+                                name="categoryId" 
+                                className="form-select mb-2"
+                            >
+                            {categories.map(category => (
+                                <option key={category.categoryId} value={category.categoryId}>
+                                    {category.categoryName}
+                                </option>
+                            ))}
+                            </select>
                         </div>
                         <button type="submit" className="btn btn-success">
                             Submit

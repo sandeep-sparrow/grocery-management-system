@@ -15,7 +15,8 @@ public class GroceryItemMapper {
             groceryItem.getGroceryDescription(),
             groceryItem.getGroceryQuantity(),
             groceryItem.getGroceryUnit(),
-            groceryItem.getGroceryUnitPrice()
+            groceryItem.getGroceryUnitPrice(),
+            groceryItem.getCategory().getCategoryId()
         );
     }
 
@@ -29,7 +30,8 @@ public class GroceryItemMapper {
             groceryItemDto.getGroceryUnitPrice(),
             GroceryStatus.ACTIVE,
             LocalDate.now(),
-            LocalDate.now()
+            LocalDate.now(),
+            null
         );
     }
 
