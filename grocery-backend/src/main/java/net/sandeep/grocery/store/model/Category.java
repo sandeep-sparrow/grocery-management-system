@@ -1,10 +1,13 @@
 package net.sandeep.grocery.store.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,5 +31,8 @@ public class Category {
 
     @Column(name = "category_description", nullable = false)
     private String categoryDescription;
+
+    @OneToMany(mappedBy = "category")
+    private List<GroceryItem> groceries;
     
 }

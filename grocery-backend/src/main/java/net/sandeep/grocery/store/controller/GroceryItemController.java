@@ -45,6 +45,12 @@ public class GroceryItemController {
         return new ResponseEntity<>(groceryItemDtos, HttpStatus.OK);
     }
 
+    @GetMapping("/getAll/{categoryId}")
+    public ResponseEntity<List<GroceryItemDto>> getAllGroceryItemsByCategoryId(@PathVariable Long categoryId) {
+        List<GroceryItemDto> groceryItemDtos = groceryService.getAllGroceryItemsByCategoryId(categoryId);
+        return new ResponseEntity<>(groceryItemDtos, HttpStatus.OK);
+    }
+
     @SuppressWarnings("null")
     @PutMapping("/update/{groceryId}")
     public ResponseEntity<GroceryItemDto> updateGroceryItem(@PathVariable Long groceryId, 
