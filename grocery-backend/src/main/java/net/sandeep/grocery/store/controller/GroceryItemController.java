@@ -21,6 +21,7 @@ public class GroceryItemController {
     private final GroceryService groceryService;
     private final CacheService cacheService;
 
+    @SuppressWarnings("null")
     @PostMapping("/create")
     public ResponseEntity<GroceryItemDto> createGroceryItem(@RequestBody GroceryItemDto groceryItemDto) {
         GroceryItemDto savedGroceryItem = groceryService.createGroceryItem(groceryItemDto);
@@ -44,6 +45,7 @@ public class GroceryItemController {
         return new ResponseEntity<>(groceryItemDtos, HttpStatus.OK);
     }
 
+    @SuppressWarnings("null")
     @PutMapping("/update/{groceryId}")
     public ResponseEntity<GroceryItemDto> updateGroceryItem(@PathVariable Long groceryId, 
                                                             @RequestBody GroceryItemDto groceryItemDto) {
