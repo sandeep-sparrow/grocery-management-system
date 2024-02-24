@@ -62,9 +62,9 @@ export default function ListGroceryComponent() {
                         <tr key={grocery.groceryId}>
                             <td>{grocery.groceryName}</td>
                             <td>{grocery.groceryDescription}</td>
-                            <td>{grocery.groceryQuantity}</td>
+                            <td>{grocery.groceryQuantity} per Unit</td>
                             <td>{grocery.groceryUnit}</td>
-                            <td>{grocery.groceryUnitPrice}</td>
+                            <td>{grocery.groceryUnitPrice} {"\u20B9"}</td>
                             <td>
                                 <button className="btn btn-info mb-2"  style={{marginRight: "4px"}} onClick={() => updateGroceryItem(grocery.groceryId)}>Update</button>
                                 <button className="btn btn-danger mb-2" onClick={() => deleteGroceryItemById(grocery.groceryId)}>Delete</button>
