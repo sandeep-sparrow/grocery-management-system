@@ -2,9 +2,14 @@ package net.sandeep.grocery.store.service.impl;
 
 import java.util.List;
 
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.sandeep.grocery.store.dto.CategoryDto;
 import net.sandeep.grocery.store.mapper.CategoryMapper;
 import net.sandeep.grocery.store.model.Category;
@@ -13,8 +18,10 @@ import net.sandeep.grocery.store.service.CategoryService;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class CategoryServiceImpl implements CategoryService {
 
+    private final CacheManager cacheManager;
     private final CategoryRepository categoryRepository;
 
     @Override
@@ -30,16 +37,18 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Cacheable(cacheNames = "categories", key = "#categoryId")
+    @SuppressWarnings("null")
     public CategoryDto getCategoryById(Long categoryId) throws IllegalArgumentException {
-        if(categoryId != null)
-            return CategoryMapper.mapToCategoryDto(categoryRepository
-                .findById(categoryId)
-                .orElseThrow(() -> new IllegalArgumentException("Category not found!"))); 
-        else
-            throw new IllegalArgumentException("Invalid or Empty Category Id requested!");
+        Category category = categoryRepository
+            .findById(categoryId)
+            .orElseThrow(() -> new IllegalArgumentException("Category not found!"));
+        log.info(String.valueOf(cacheManager.getCacheNames().stream().toList()));
+        return CategoryMapper.mapToCategoryDto(category);
     }
 
     @Override
+    @Cacheable(cacheNames = "categories", key = "#root.methodName")
     public List<CategoryDto> getAllCategories() {
         List<Category> categories = categoryRepository.findAll();
         return CategoryMapper.mapToCategoryDtoList(categories);
@@ -47,6 +56,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @SuppressWarnings("null")
+    @CachePut(cacheNames = "categories", key = "#categoryId")
     public CategoryDto updateCategory(Long categoryId, CategoryDto categoryDto) {
         Category category = categoryRepository
             .findById(categoryId)
@@ -60,8 +70,9 @@ public class CategoryServiceImpl implements CategoryService {
         return CategoryMapper.mapToCategoryDto(category);   
     }
 
-    @Override
     @SuppressWarnings("null")
+    @Override
+    @CacheEvict(cacheNames = "categories", key = "#categoryId", beforeInvocation = true, condition = "#categoryId != null")
     public void deleteCategory(Long categoryId) {
 
         Category category = categoryRepository

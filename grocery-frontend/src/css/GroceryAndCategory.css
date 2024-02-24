@@ -2,15 +2,14 @@
     30% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.2); opacity: 1; }
     100% { transform: scale(1); opacity: 1; }
-  }
+}
 
 .popping-text {
     display: inline-block;
     animation: pop 5s ease infinite; /* Apply the pop animation infinitely */
-  }
+}
 
 label {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-

@@ -48,9 +48,11 @@
     bottom: 0;
     width: 90%;
     height: 50px;
-    background-color: black;
+    background-color: #eec0c8;
     text-align: center;
-    color: white;
+    color: #002D62;
+    border-radius: 10px;
+    align-content: center;
 }
 
 .error{
