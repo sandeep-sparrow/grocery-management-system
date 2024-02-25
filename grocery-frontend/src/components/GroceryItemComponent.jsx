@@ -91,109 +91,109 @@ export default function GroceryItemComponent() {
         });
     }, [])
 
-  return (
-    <div className="container">
-        <br /> <br />
-        <div className="row">
-            <div className="card col-md-6 offset-md-3 offset-md-3">
-                <h2 className="text-center">{pageTitle()}</h2>
-                <div className="card-body" style={{ textAlign: "left" }}>
-                    <form onSubmit={formik.handleSubmit}>
-                        <div className="form-group mb-2">
-                            <label className="form-label">Grocery Name:</label>
-                            <input 
-                                type="text"
-                                name="groceryName"
-                                className="form-control" 
-                                placeholder="Enter grocery name"
-                                onChange={formik.handleChange}
-                                value={formik.values.groceryName}
-                                onBlur={formik.handleBlur}
-                            />
-                            {formik.touched.groceryName && formik.errors.groceryName ? (
-                                <div className="error">{formik.errors.groceryName}</div>) : null}
-                        </div>
-                        <div className="form-group mb-2">
-                            <label className="form-label">Grocery Description:</label>
-                            <input 
-                                type="text"
-                                name="groceryDescription"
-                                className="form-control" 
-                                placeholder="Enter grocery description"
-                                onChange={formik.handleChange}
-                                value={formik.values.groceryDescription}
-                                onBlur={formik.handleBlur}
-                            />
-                            {formik.touched.groceryDescription && formik.errors.groceryDescription ? (
-                                <div className="error">{formik.errors.groceryDescription}</div>) : null}
-                        </div>
-                        <div className="form-group mb-2">
-                            <label className="form-label">Grocery Quantity:</label>
-                            <input 
-                                type="number"
-                                name="groceryQuantity"
-                                className="form-control" 
-                                placeholder="Enter grocery quantity"
-                                onChange={formik.handleChange}
-                                value={formik.values.groceryQuantity}
-                                onBlur={formik.handleBlur}
-                            />
-                            {formik.touched.groceryQuantity && formik.errors.groceryQuantity ? (
-                                <div className="error">{formik.errors.groceryQuantity}</div>) : null}
-                        </div>
-                        <div className="form-group mb-2">
-                            <label className="form-label">Grocery Unit:</label>
-                            <input 
-                                type="number"
-                                name="groceryUnit"
-                                className="form-control" 
-                                placeholder="Enter grocery unit"
-                                onChange={formik.handleChange}
-                                value={formik.values.groceryUnit}
-                                onBlur={formik.handleBlur}
-                            />
-                            {formik.touched.groceryUnit && formik.errors.groceryUnit ? (
-                                <div className="error">{formik.errors.groceryUnit}</div>) : null}
-                        </div>
-                        <div className="form-group mb-2">
-                            <label className="form-label">Grocery Unit Price:</label>
-                            <input 
-                                type="number"
-                                name="groceryUnitPrice"
-                                className="form-control" 
-                                placeholder="Enter grocery unit price"
-                                onChange={formik.handleChange}
-                                value={formik.values.groceryUnitPrice}
-                                onBlur={formik.handleBlur}
-                            />
-                            {formik.touched.groceryUnitPrice && formik.errors.groceryUnitPrice ? (
-                                <div className="error">{formik.errors.groceryUnitPrice}</div>) : null}
-                        </div>
-                        <div className="form-group mb-2">
-                            <label className="form-label">Grocery Category:</label>
-                            <select 
-                                value={formik.values.categoryId} 
-                                onChange={formik.handleChange} 
-                                onBlur={formik.handleBlur} 
-                                name="categoryId" 
-                                className="form-select mb-2"
-                            >
-                            {categories.map(category => (
-                                <option key={category.categoryId} value={category.categoryId}>
-                                    {category.categoryName}
-                                </option>
-                            ))}
-                            </select>
-                        </div>
-                        <button type="submit" className="btn btn-success">
-                            Submit
-                        </button>
-                    </form>
+    return (
+        <div className="container">
+            <br /> <br />
+            <div className="row">
+                <div className="card col-md-6 offset-md-3 offset-md-3">
+                    <h2 className="text-center">{pageTitle()}</h2>
+                    <div className="card-body" style={{ textAlign: "left" }}>
+                        <form onSubmit={formik.handleSubmit}>
+                            <div className="form-group mb-2">
+                                <label className="form-label">Grocery Name:</label>
+                                <input 
+                                    type="text"
+                                    name="groceryName"
+                                    className="form-control" 
+                                    placeholder="Enter grocery name"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.groceryName}
+                                    onBlur={formik.handleBlur}
+                                />
+                                {formik.touched.groceryName && formik.errors.groceryName ? (
+                                    <div className="error">{formik.errors.groceryName}</div>) : null}
+                            </div>
+                            <div className="form-group mb-2">
+                                <label className="form-label">Grocery Description:</label>
+                                <input 
+                                    type="text"
+                                    name="groceryDescription"
+                                    className="form-control" 
+                                    placeholder="Enter grocery description"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.groceryDescription}
+                                    onBlur={formik.handleBlur}
+                                />
+                                {formik.touched.groceryDescription && formik.errors.groceryDescription ? (
+                                    <div className="error">{formik.errors.groceryDescription}</div>) : null}
+                            </div>
+                            <div className="form-group mb-2">
+                                <label className="form-label">Grocery Quantity:</label>
+                                <input 
+                                    type="number"
+                                    name="groceryQuantity"
+                                    className="form-control" 
+                                    placeholder="Enter grocery quantity"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.groceryQuantity}
+                                    onBlur={formik.handleBlur}
+                                />
+                                {formik.touched.groceryQuantity && formik.errors.groceryQuantity ? (
+                                    <div className="error">{formik.errors.groceryQuantity}</div>) : null}
+                            </div>
+                            <div className="form-group mb-2">
+                                <label className="form-label">Grocery Unit:</label>
+                                <input 
+                                    type="number"
+                                    name="groceryUnit"
+                                    className="form-control" 
+                                    placeholder="Enter grocery unit"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.groceryUnit}
+                                    onBlur={formik.handleBlur}
+                                />
+                                {formik.touched.groceryUnit && formik.errors.groceryUnit ? (
+                                    <div className="error">{formik.errors.groceryUnit}</div>) : null}
+                            </div>
+                            <div className="form-group mb-2">
+                                <label className="form-label">Grocery Unit Price:</label>
+                                <input 
+                                    type="number"
+                                    name="groceryUnitPrice"
+                                    className="form-control" 
+                                    placeholder="Enter grocery unit price"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.groceryUnitPrice}
+                                    onBlur={formik.handleBlur}
+                                />
+                                {formik.touched.groceryUnitPrice && formik.errors.groceryUnitPrice ? (
+                                    <div className="error">{formik.errors.groceryUnitPrice}</div>) : null}
+                            </div>
+                            <div className="form-group mb-2">
+                                <label className="form-label">Grocery Category:</label>
+                                <select 
+                                    value={formik.values.categoryId} 
+                                    onChange={formik.handleChange} 
+                                    onBlur={formik.handleBlur} 
+                                    name="categoryId" 
+                                    className="form-select mb-2"
+                                >
+                                {categories.map(category => (
+                                    <option key={category.categoryId} value={category.categoryId}>
+                                        {category.categoryName}
+                                    </option>
+                                ))}
+                                </select>
+                            </div>
+                            <button type="submit" className="btn btn-success">
+                                Submit
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <br /> <br />
         </div>
-        <br /> <br />
-    </div>
-  );
+    );
 }
 
