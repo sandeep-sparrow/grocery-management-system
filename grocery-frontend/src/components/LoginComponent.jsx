@@ -1,7 +1,8 @@
 import React from "react"
 import { useFormik } from "formik"
 import "../css/LoginRegisterComponent.css"
-import { loginAPI, storeToken } from "../services/RegisterService";
+import { loginAPI, saveLoggedInUser, storeToken } from "../services/AuthenticationService";
+import { useNavigate } from "react-router-dom";
 
 function LoginComponent() {
 
@@ -9,17 +10,17 @@ function LoginComponent() {
         usernameOrEmail: "",
         password: "",
     };
+    const navigator = useNavigate();
 
-    const onSubmit = (values) => {
-        console.log(values);
-        loginAPI(values).then((response) => {
-            console.log(response);
-            alert("Login Successful");
+    const onSubmit = async (values) => {
+        await loginAPI(values).then((response) => {
 
             const token = 'Basic ' + window.btoa(values.usernameOrEmail + ':' + values.password);
+
             storeToken(token);
+            saveLoggedInUser(values.usernameOrEmail);
             
-            window.location.href = "/grocery-items";
+            navigator("/grocery-items");
         }).catch((error) => {
             console.log(error);
             alert("Login Failed, invalid Credentials");
