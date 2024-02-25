@@ -1,7 +1,7 @@
 import React from "react"
 import { useFormik } from "formik"
 import "../css/LoginRegisterComponent.css"
-import { registerAPI } from "../services/RegisterService";
+import { registerAPI } from "../services/AuthenticationService";
 
 function RegisterComponent() {
 

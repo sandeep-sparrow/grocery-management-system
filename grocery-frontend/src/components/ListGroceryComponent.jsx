@@ -112,7 +112,7 @@ export default function ListGroceryComponent() {
                     </button>
                     <div style={{display: "flex", gap: "25px"}}>
                         <label className="form-label" style={{marginTop: "5px"}}>
-                            <span className="popping-text" style={{color: "#006400", fontStyle: "unset", backgroundColor: "pink", borderRadius: "3px"}}>
+                            <span className="popping-text" style={{color: "black", fontStyle: "unset", backgroundColor: "pink", borderRadius: "3px"}}>
                                 Select Category:
                             </span>
                         </label>
