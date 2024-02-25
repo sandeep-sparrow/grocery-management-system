@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getToken } from "./RegisterService";
+import { getToken } from "./AuthenticationService";
 
 const REST_API_BASE_URL = 'http://localhost:8080/api/grocery-item';
 

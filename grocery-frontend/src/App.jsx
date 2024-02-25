@@ -7,7 +7,6 @@ import ListGroceryComponent from './components/ListGroceryComponent'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RegisterComponent from './components/RegisterComponent';
 import LoginComponent from './components/LoginComponent';
-import LogoutComponent from './components/LogoutComponent';
 
 function App() {
 
@@ -16,10 +15,9 @@ function App() {
         <BrowserRouter>
             <HeaderComponent />
             <Routes>
-                <Route path='/' element= {<ListGroceryComponent />}></Route>
+                <Route path='/' element= {<LoginComponent />}></Route>
                 <Route path='/register' element={<RegisterComponent />}></Route>
                 <Route path='/login' element={<LoginComponent />}></Route>
-                <Route path='/logout' element={<LogoutComponent />}></Route>
                 <Route path='/grocery-items' element={<ListGroceryComponent />}></Route>
                 <Route path='/add-grocery-item' element={<GroceryItemComponent />}></Route>
                 <Route path='/edit-grocery-item/:id' element={<GroceryItemComponent />}></Route>

@@ -1,7 +1,7 @@
 import React from "react"
 import { useFormik } from "formik"
 import "../css/LoginRegisterComponent.css"
-import { loginAPI, storeToken } from "../services/RegisterService";
+import { loginAPI, saveLoggedInUser, storeToken } from "../services/AuthenticationService";
 
 function LoginComponent() {
 
@@ -13,12 +13,12 @@ function LoginComponent() {
     const onSubmit = (values) => {
         console.log(values);
         loginAPI(values).then((response) => {
-            console.log(response);
-            alert("Login Successful");
 
             const token = 'Basic ' + window.btoa(values.usernameOrEmail + ':' + values.password);
-            storeToken(token);
             
+            storeToken(token);
+            saveLoggedInUser(values.usernameOrEmail);
+
             window.location.href = "/grocery-items";
         }).catch((error) => {
             console.log(error);
