@@ -1,6 +1,6 @@
 import React from "react"
 import { useFormik } from "formik"
-import "../css/RegisterComponent.css"
+import "../css/LoginRegisterComponent.css"
 import { registerAPI } from "../services/RegisterService";
 
 function RegisterComponent() {
@@ -58,7 +58,7 @@ function RegisterComponent() {
                         <div className="card-body">
                             <form onSubmit={formik.handleSubmit}>
                                 <div className="row mb-3">
-                                    <label className="col-md-3 control-label">Name: </label>
+                                    <label className="col-md-3 control-label">Name</label>
                                     <div className="col-md-9">
                                         <input
                                         placeholder="Enter Name"
@@ -78,7 +78,7 @@ function RegisterComponent() {
                                     </div>
                                 </div>
                                 <div className="row mb-3">
-                                    <label className="col-md-3 control-label">User Name: </label>
+                                    <label className="col-md-3 control-label">UserName</label>
                                     <div className="col-md-9">
                                         <input
                                         placeholder="Enter User Name"
@@ -98,7 +98,7 @@ function RegisterComponent() {
                                     </div>
                                 </div>
                                 <div className="row mb-3">
-                                    <label className="col-md-3 control-label">Email: </label>
+                                    <label className="col-md-3 control-label">Email</label>
                                     <div className="col-md-9">
                                         <input
                                         placeholder="Enter Email Address"
@@ -118,10 +118,10 @@ function RegisterComponent() {
                                     </div>
                                 </div>
                                 <div className="row mb-3">
-                                    <label className="col-md-3 control-label">Password: </label>
+                                    <label className="col-md-3 control-label">Password</label>
                                     <div className="col-md-9">
                                         <input
-                                        placeholder="Enter Name"
+                                        placeholder="Enter your password"
                                         type="text"
                                         className="form-control"
                                         id="password"

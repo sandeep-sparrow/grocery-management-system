@@ -9,3 +9,11 @@ export function registerAPI(register){
 export function loginAPI(login){
     return axios.post(REST_API_BASE_URL + "/login", login);
 }
+
+export const storeToken = (token) => {
+    localStorage.setItem('token', token);
+}
+
+export const getToken = () => {
+    return localStorage.getItem('token');
+}

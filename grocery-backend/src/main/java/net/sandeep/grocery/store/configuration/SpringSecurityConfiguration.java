@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import net.sandeep.grocery.store.exception.GroceryAPIException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -23,6 +24,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @AllArgsConstructor
 public class SpringSecurityConfiguration {
 
+    @SuppressWarnings("unused")
     private final UserDetailsService userDetailsService;
 
     @Bean
@@ -36,6 +38,7 @@ public class SpringSecurityConfiguration {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> {
                     authorize.requestMatchers("/api/auth/**").permitAll();
+                    authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
                     authorize.anyRequest().authenticated();
                 })
                 .httpBasic(Customizer.withDefaults());
