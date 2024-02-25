@@ -67,51 +67,51 @@ export default function CategoryComponent() {
     }, [id])
 
 
-  return (
-    <div className="container">
-        <br /> <br />
-        <div className="row">
-            <div className="card col-md-6 offset-md-3 offset-md-3">
-                <h2 className="text-center">{pageTitle()}</h2>
-                <div className="card-body" style={{ textAlign: "left" }}>
-                    <form onSubmit={formik.handleSubmit}>
-                        <div className="form-group mb-2">
-                            <label className="form-label">Category Name:</label>
-                            <input 
-                                type="text"
-                                name="categoryName"
-                                className="form-control" 
-                                placeholder="Enter category name"
-                                onChange={formik.handleChange}
-                                value={formik.values.categoryName}
-                                onBlur={formik.handleBlur}
-                            />
-                            {formik.touched.categoryName && formik.errors.categoryName ? (
-                                <div className="error">{formik.errors.categoryName}</div>) : null}
-                        </div>
-                        <div className="form-group mb-2">
-                            <label className="form-label">Category Description:</label>
-                            <input 
-                                type="text"
-                                name="categoryDescription"
-                                className="form-control" 
-                                placeholder="Enter category description"
-                                onChange={formik.handleChange}
-                                value={formik.values.categoryDescription}
-                                onBlur={formik.handleBlur}
-                            />
-                            {formik.touched.categoryDescription && formik.errors.categoryDescription ? (
-                                <div className="error">{formik.errors.categoryDescription}</div>) : null}
-                        </div>
-                        <button type="submit" className="btn btn-success">
-                            Submit
-                        </button>
-                    </form>
+    return (
+        <div className="container">
+            <br /> <br />
+            <div className="row">
+                <div className="card col-md-6 offset-md-3 offset-md-3">
+                    <h2 className="text-center">{pageTitle()}</h2>
+                    <div className="card-body" style={{ textAlign: "left" }}>
+                        <form onSubmit={formik.handleSubmit}>
+                            <div className="form-group mb-2">
+                                <label className="form-label">Category Name:</label>
+                                <input 
+                                    type="text"
+                                    name="categoryName"
+                                    className="form-control" 
+                                    placeholder="Enter category name"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.categoryName}
+                                    onBlur={formik.handleBlur}
+                                />
+                                {formik.touched.categoryName && formik.errors.categoryName ? (
+                                    <div className="error">{formik.errors.categoryName}</div>) : null}
+                            </div>
+                            <div className="form-group mb-2">
+                                <label className="form-label">Category Description:</label>
+                                <input 
+                                    type="text"
+                                    name="categoryDescription"
+                                    className="form-control" 
+                                    placeholder="Enter category description"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.categoryDescription}
+                                    onBlur={formik.handleBlur}
+                                />
+                                {formik.touched.categoryDescription && formik.errors.categoryDescription ? (
+                                    <div className="error">{formik.errors.categoryDescription}</div>) : null}
+                            </div>
+                            <button type="submit" className="btn btn-success">
+                                Submit
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <br /> <br />
         </div>
-        <br /> <br />
-    </div>
-  );
+    );
 }
 

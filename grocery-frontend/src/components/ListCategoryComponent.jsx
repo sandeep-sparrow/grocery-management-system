@@ -63,34 +63,34 @@ export default function ListCategoryComponent() {
         )})}
     </>
 
-  return (
-    <div className="container">
-        <h2 className="text-centre" style={{fontStyle: "unset"}}>List of Categories</h2>
-        <nav className="navbar navbar-light bg-light justify-content-left">
-            <div className="container">
-                <button 
-                    className="btn btn-primary mb-2" 
-                    onClick={addNewCategoryItem}
-                >
-                    Add Category Item
-                </button>
-            </div>
-        </nav>
-        <table className="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Category Name</th>
-                    <th>Category Description</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {categoryList.length == 0? 
-                    <tr><td colSpan="6">No Category Items Found</td></tr> : 
-                    listCategoryItems
-                }
-            </tbody>
-        </table>
-    </div>
-  );
+    return (
+        <div className="container">
+            <h2 className="text-centre" style={{fontStyle: "unset"}}>List of Categories</h2>
+            <nav className="navbar navbar-light bg-light justify-content-left">
+                <div className="container">
+                    <button 
+                        className="btn btn-primary mb-2" 
+                        onClick={addNewCategoryItem}
+                    >
+                        Add Category Item
+                    </button>
+                </div>
+            </nav>
+            <table className="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Category Name</th>
+                        <th>Category Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {categoryList.length == 0? 
+                        <tr><td colSpan="6">No Category Items Found</td></tr> : 
+                        listCategoryItems
+                    }
+                </tbody>
+            </table>
+        </div>
+    );
 }
