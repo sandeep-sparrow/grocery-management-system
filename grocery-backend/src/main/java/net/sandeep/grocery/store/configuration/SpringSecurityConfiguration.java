@@ -1,6 +1,7 @@
 package net.sandeep.grocery.store.configuration;
 
 import lombok.AllArgsConstructor;
+import net.sandeep.grocery.store.exception.GroceryAPIException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,15 +34,17 @@ public class SpringSecurityConfiguration {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authorize ->
-                        authorize.anyRequest().authenticated())
+                .authorizeHttpRequests(authorize -> {
+                    authorize.requestMatchers("/api/auth/**").permitAll();
+                    authorize.anyRequest().authenticated();
+                })
                 .httpBasic(Customizer.withDefaults());
 
         return httpSecurity.build();
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception, GroceryAPIException {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
