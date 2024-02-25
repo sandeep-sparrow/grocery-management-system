@@ -30,7 +30,7 @@ export default function ListCategoryComponent() {
 
     function deleteCategoryItem(categoryId) {
         deleteCategory(categoryId).then((response) => {
-            getAllCategorys();
+            getAllCategories();
             navigator("/category-items");
         }).catch((error) => {
             console.log("Error from server: ", error);
