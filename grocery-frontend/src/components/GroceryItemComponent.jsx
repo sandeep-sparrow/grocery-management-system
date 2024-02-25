@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React, { useEffect, useState } from "react"
 import { useFormik } from "formik"
 import { addGroceryItem, getGroceryItem, updateGroceryItem } from "../services/GroceryService";
 import { useNavigate, useParams } from "react-router-dom";
@@ -7,7 +7,7 @@ import { getAllCategory } from "../services/CategoryService";
 export default function GroceryItemComponent() {
 
     const navigator = useNavigate();
-    const [categories, setCategories] = React.useState([]);
+    const [categories, setCategories] = useState([]);
     
     const { id } = useParams();
 

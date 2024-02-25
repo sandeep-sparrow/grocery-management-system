@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
 import net.sandeep.grocery.store.dto.CategoryDto;
+import net.sandeep.grocery.store.service.CacheService;
 import net.sandeep.grocery.store.service.CategoryService;
 import java.util.List;
 
@@ -24,12 +25,18 @@ import java.util.List;
 public class CategoryController {
 
     private final CategoryService categoryService;
+    private final CacheService cacheService;
 
+    @SuppressWarnings("null")
     @PostMapping("/create")
     public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto){
-        CategoryDto savCategoryDto = categoryService.createCategory(categoryDto);
-
-        return new ResponseEntity<>(savCategoryDto, HttpStatus.CREATED);
+        CategoryDto savedCategoryDto = categoryService.createCategory(categoryDto);
+        if(savedCategoryDto != null)
+            cacheService.removeCategoryCache("categories");
+        if(savedCategoryDto != null)
+            return new ResponseEntity<>(savedCategoryDto, HttpStatus.CREATED);
+        else
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/{categoryId}")
@@ -41,16 +48,22 @@ public class CategoryController {
 
     @GetMapping("/getAll")
     public ResponseEntity<List<CategoryDto>> getAllCategories(){
-        List<CategoryDto> categoryDtos = categoryService.getAllCategories();
+        List<CategoryDto> categoryDtos = categoryService.getAllCategory();
 
         return new ResponseEntity<>(categoryDtos, HttpStatus.OK);  //200 ok status code
     }
 
+    @SuppressWarnings("null")
     @PutMapping("/update/{categoryId}")
-    public ResponseEntity<CategoryDto> updateCategory(@PathVariable("categoryId") Long categoryId, @RequestBody CategoryDto categoryDto){
+    public ResponseEntity<CategoryDto> updateCategory(@PathVariable("categoryId") Long categoryId, 
+                                                     @RequestBody CategoryDto categoryDto){
         CategoryDto updatedCategoryDto = categoryService.updateCategory(categoryId, categoryDto);
-
-        return new ResponseEntity<>(updatedCategoryDto, HttpStatus.OK);
+        if(updatedCategoryDto != null)
+            cacheService.removeCategoryCache("categories");
+        if(updatedCategoryDto != null)
+            return new ResponseEntity<>(updatedCategoryDto, HttpStatus.CREATED);
+        else
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/delete/{categoryId}")

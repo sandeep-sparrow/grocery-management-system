@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { getAllGroceryItems, deleteGroceryItem, getAllGroceryItemsByCategoryId } from "../services/GroceryService";
 import { useNavigate } from "react-router-dom";
 import { getAllCategory } from "../services/CategoryService";
-import "./ListGroceryComponent.css"
+import "../css/GroceryAndCategory.css"
 
 export default function ListGroceryComponent() {
 
@@ -101,7 +101,7 @@ export default function ListGroceryComponent() {
 
   return (
     <div className="container">
-        <h2 className="text-centre">List of Grocery's</h2>
+        <h2 className="text-centre" style={{fontStyle: "unset"}}>List of Groceries</h2>
         <nav className="navbar navbar-light bg-light justify-content-left">
             <div className="container">
                 <button 
@@ -111,8 +111,10 @@ export default function ListGroceryComponent() {
                     Add Grocery Item
                 </button>
                 <div style={{display: "flex", gap: "25px"}}>
-                    <label className="form-label" style={{marginTop: "5px", fontFamily: "sans-serif", color: "ActiveCaption"}}>
-                        <b className="popping-text">Select Category:</b>
+                    <label className="form-label" style={{marginTop: "5px"}}>
+                        <span className="popping-text" style={{color: "#006400", fontStyle: "unset", backgroundColor: "pink", borderRadius: "3px"}}>
+                            Select Category:
+                        </span>
                     </label>
                     <select 
                         value={selectedCategoryId}

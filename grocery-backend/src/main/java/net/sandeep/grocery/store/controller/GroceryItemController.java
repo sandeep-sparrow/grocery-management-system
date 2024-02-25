@@ -26,7 +26,7 @@ public class GroceryItemController {
     public ResponseEntity<GroceryItemDto> createGroceryItem(@RequestBody GroceryItemDto groceryItemDto) {
         GroceryItemDto savedGroceryItem = groceryService.createGroceryItem(groceryItemDto);
         if(savedGroceryItem != null)
-            cacheService.removeCache("groceryItems");
+            cacheService.removeGroceryItemCache("groceryItems");
         if(savedGroceryItem != null)
             return new ResponseEntity<>(savedGroceryItem, HttpStatus.CREATED);
         else
@@ -57,7 +57,7 @@ public class GroceryItemController {
                                                             @RequestBody GroceryItemDto groceryItemDto) {
         GroceryItemDto updatedGroceryItem = groceryService.updateGroceryItem(groceryId, groceryItemDto);
         if(updatedGroceryItem != null)
-            cacheService.removeCache("groceryItems");
+            cacheService.removeGroceryItemCache("groceryItems");
         if(updatedGroceryItem != null)
             return new ResponseEntity<>(updatedGroceryItem, HttpStatus.CREATED);
         else
@@ -67,7 +67,7 @@ public class GroceryItemController {
     @DeleteMapping("/delete/{groceryId}")
     public ResponseEntity<String> deleteGroceryItem(@PathVariable Long groceryId) {
         groceryService.deleteGroceryItem(groceryId);
-        cacheService.removeCache("groceryItems");
+        cacheService.removeGroceryItemCache("groceryItems");
         return new ResponseEntity<>("Grocery item deleted successfully groceryId: " + groceryId, HttpStatus.OK);
     }
 
