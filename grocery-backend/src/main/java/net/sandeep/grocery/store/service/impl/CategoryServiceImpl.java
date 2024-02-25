@@ -49,7 +49,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Cacheable(cacheNames = "categories", key = "#root.methodName")
-    public List<CategoryDto> getAllCategories() {
+    public List<CategoryDto> getAllCategory() {
         List<Category> categories = categoryRepository.findAll();
         return CategoryMapper.mapToCategoryDtoList(categories);
     }
