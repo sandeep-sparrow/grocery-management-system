@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function ListCategoryComponent() {
 
-    const[CategoryList, setCategoryList] = useState([]);
+    const[categoryList, setCategoryList] = useState([]);
 
     const navigator = useNavigate();
 
@@ -21,15 +21,15 @@ export default function ListCategoryComponent() {
     }
 
     const addNewCategoryItem = () => {
-        navigator("/add-Category-item");
+        navigator("/add-category-item");
     };
 
-    function updateCategoryItem(CategoryId) {
-        navigator(`/edit-Category-item/${CategoryId}`)
-    };
+    function updateCategoryItem(categoryId) {
+        navigator(`/edit-category-item/${categoryId}`)
+    };  
 
-    function deleteCategoryItem(CategoryId) {
-        deleteCategory(CategoryId).then((response) => {
+    function deleteCategoryItem(categoryId) {
+        deleteCategory(categoryId).then((response) => {
             getAllCategorys();
             navigator("/category-items");
         }).catch((error) => {
@@ -39,22 +39,22 @@ export default function ListCategoryComponent() {
 
     const listCategoryItems = 
     <>
-        {CategoryList.map((Category) => {
+        {categoryList.map((category) => {
         return (
-            <tr key={Category.categoryId}>
-                <td>{Category.categoryName}</td>
-                <td>{Category.categoryDescription}</td>
+            <tr key={category.categoryId}>
+                <td>{category.categoryName}</td>
+                <td>{category.categoryDescription}</td>
                 <td>
                     <button 
                         className="btn btn-info mb-2" 
                         style={{marginRight: "4px"}} 
-                        onClick={() => updateCategoryItem(Category.categoryId)}
+                        onClick={() => updateCategoryItem(category.categoryId)}
                     >
                         Update
                     </button>
                     <button 
                         className="btn btn-danger mb-2" 
-                        onClick={() => deleteCategoryItem(Category.categoryId)}
+                        onClick={() => deleteCategoryItem(category.categoryId)}
                     >
                         Delete
                     </button>
@@ -85,7 +85,7 @@ export default function ListCategoryComponent() {
                 </tr>
             </thead>
             <tbody>
-                {CategoryList.length == 0? 
+                {categoryList.length == 0? 
                     <tr><td colSpan="6">No Category Items Found</td></tr> : 
                     listCategoryItems
                 }

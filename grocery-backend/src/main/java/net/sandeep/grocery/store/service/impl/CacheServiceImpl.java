@@ -20,8 +20,20 @@ public class CacheServiceImpl implements CacheService {
     }
 
     @Override
-    @CacheEvict(value = "groceryItems", allEntries = true)
-    public String removeCache(String cacheName) {
-        return "Cache Evicted!";
+    @CacheEvict(value = {"groceryItems"}, allEntries = true)
+    public String removeGroceryItemCache(String cacheName) {
+        return "Grocery Cache Evicted!";
+    }
+
+    @Override
+    @CacheEvict(value = {"categories"}, allEntries = true)
+    public String removeCategoryCache(String cacheName) {
+        return "Category Cache Evicted!";
+    }
+
+    @Override
+    @CacheEvict(value = {"groceryItems", "categories"}, allEntries = true)
+    public String removeAllCache() {
+        return "All Cache Evicted!";
     }
 }

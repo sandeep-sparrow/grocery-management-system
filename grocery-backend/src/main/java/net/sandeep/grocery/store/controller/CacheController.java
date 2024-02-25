@@ -21,8 +21,8 @@ public class CacheController {
     }
 
     @DeleteMapping("/remove-all")
-    public  ResponseEntity<String> removeAllCache(@RequestParam("name") String name){
-        String message = cacheService.removeCache(name);
+    public  ResponseEntity<String> removeAllCache(){
+        String message = cacheService.removeAllCache();
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 }
