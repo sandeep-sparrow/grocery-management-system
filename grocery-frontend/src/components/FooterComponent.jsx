@@ -6,7 +6,7 @@ export default function FooterComponent() {
   return (
     <div>
         <footer className="footer"> 
-            <span><b >All rights reserved @2024 by Sandeep R P</b></span>
+            <p style={{paddingTop: "10px"}}>All rights reserved @2024 by Sandeep R P</p>
         </footer>
     </div>
   );
