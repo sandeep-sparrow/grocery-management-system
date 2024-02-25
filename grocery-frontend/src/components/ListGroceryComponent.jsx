@@ -99,60 +99,60 @@ export default function ListGroceryComponent() {
         )})}
     </>
 
-  return (
-    <div className="container">
-        <h2 className="text-centre" style={{fontStyle: "unset"}}>List of Groceries</h2>
-        <nav className="navbar navbar-light bg-light justify-content-left">
-            <div className="container">
-                <button 
-                    className="btn btn-primary mb-2" 
-                    onClick={addNewGroceryItem}
-                >
-                    Add Grocery Item
-                </button>
-                <div style={{display: "flex", gap: "25px"}}>
-                    <label className="form-label" style={{marginTop: "5px"}}>
-                        <span className="popping-text" style={{color: "#006400", fontStyle: "unset", backgroundColor: "pink", borderRadius: "3px"}}>
-                            Select Category:
-                        </span>
-                    </label>
-                    <select 
-                        value={selectedCategoryId}
-                        onChange={handleCategoryChange}
-                        name="categoryId"
-                        className="form-select mb-2"
+    return (
+        <div className="container">
+            <h2 className="text-centre" style={{fontStyle: "unset"}}>List of Groceries</h2>
+            <nav className="navbar navbar-light bg-light justify-content-left">
+                <div className="container">
+                    <button 
+                        className="btn btn-primary mb-2" 
+                        onClick={addNewGroceryItem}
                     >
-                    {categories.map(category => (
-                        <option 
-                            key={category.categoryId} 
-                            value={category.categoryId}
-                            style={{fontFamily: "sans-serif"}}
+                        Add Grocery Item
+                    </button>
+                    <div style={{display: "flex", gap: "25px"}}>
+                        <label className="form-label" style={{marginTop: "5px"}}>
+                            <span className="popping-text" style={{color: "#006400", fontStyle: "unset", backgroundColor: "pink", borderRadius: "3px"}}>
+                                Select Category:
+                            </span>
+                        </label>
+                        <select 
+                            value={selectedCategoryId}
+                            onChange={handleCategoryChange}
+                            name="categoryId"
+                            className="form-select mb-2"
                         >
-                            {category.categoryName}
-                        </option>
-                    ))}
-                    </select>
+                        {categories.map(category => (
+                            <option 
+                                key={category.categoryId} 
+                                value={category.categoryId}
+                                style={{fontFamily: "sans-serif"}}
+                            >
+                                {category.categoryName}
+                            </option>
+                        ))}
+                        </select>
+                    </div>
                 </div>
-            </div>
-        </nav>
-        <table className="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Grocery Name</th>
-                    <th>Grocery Description</th>
-                    <th>Grocery Quantity</th>
-                    <th>Grocery Unit</th>
-                    <th>Grocery Unit Price</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {groceryList.length == 0? 
-                    <tr><td colSpan="6">No Grocery Items Found</td></tr> : 
-                    listGroceryItems
-                }
-            </tbody>
-        </table>
-    </div>
-  );
+            </nav>
+            <table className="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Grocery Name</th>
+                        <th>Grocery Description</th>
+                        <th>Grocery Quantity</th>
+                        <th>Grocery Unit</th>
+                        <th>Grocery Unit Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {groceryList.length == 0? 
+                        <tr><td colSpan="6">No Grocery Items Found</td></tr> : 
+                        listGroceryItems
+                    }
+                </tbody>
+            </table>
+        </div>
+    );
 }
