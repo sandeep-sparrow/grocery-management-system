@@ -29,16 +29,16 @@ This is a Grocery Management application developed using Java for the backend an
 ### Backend Setup
 
 1. Clone the repository:
-   git clone https://github.com/your-username/grocery-management-backend.git
+   ```bash git clone https://github.com/your-username/grocery-management-backend.git ```bash
 
 
 2. navigate to root directory
-   cd grocery-backend
+   ```bash cd grocery-backend ```bash
 
 3. Configure the database connection in application.properties.
 
 4. Run the backend server - 
-  ./mvnw spring-boot:run
+  ```bash ./mvnw spring-boot:run ```bash
 
 # Frontend Setup for ReactJS
 
@@ -54,20 +54,22 @@ Before you begin, ensure you have the following installed on your local machine:
 ## Installation
 
 1. Clone the repository:
-   git clone https://github.com/your-username/your-repo-name.git
+   ```bash git clone https://github.com/your-username/your-repo-name.git ```bash
 
 2. Naviagte to src
-   cd your-repo-name
+   ```bash cd your-repo-name ```bash
 
 3. Install dependencies
-   npm install
+   ```bash npm install ```bash
 
 4. Start dev server
-   npm start
+   ```bash npm start ```bash
 
 ### The application will open in your default web browser at http://localhost:3000.
 
-Folder Structure:
+# Folder Structure:
+  ```bash
+
 your-repo-name/
   ├── public/            # Public assets
   │   ├── index.html     # HTML template
@@ -77,15 +79,16 @@ your-repo-name/
   │   ├── styles/        # CSS or SCSS stylesheets
   │   ├── App.js         # Main component
   │   └── ...
-  ├── package.json       # Project metadata and dependencies
+  ├── package.json       # Project metadata and dependencies 
   └── ...
 
+  ```
 
-### Deployment
+## Deployment
 
-  npm run build
+  ```bash npm run build ```bash
 
-### Contributing
+# Contributing
 Contributions are welcome! Please fork the repository and create a pull request with your changes.
 
 # License
