@@ -27,13 +27,8 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryDto createCategory(CategoryDto categoryDto) throws IllegalArgumentException {
         Category category = CategoryMapper.mapToCategory(categoryDto);
-
-        if(category != null){
-            Category savCategory = categoryRepository.save(category);
-            return CategoryMapper.mapToCategoryDto(savCategory);
-        }else{
-            throw new IllegalArgumentException("Invalid or Empty Category requested!");
-        }
+        Category savCategory = categoryRepository.save(category);
+        return CategoryMapper.mapToCategoryDto(savCategory);
     }
 
     @Override
