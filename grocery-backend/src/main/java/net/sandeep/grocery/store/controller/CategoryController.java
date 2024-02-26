@@ -69,7 +69,7 @@ public class CategoryController {
     @DeleteMapping("/delete/{categoryId}")
     public ResponseEntity<String> deleteCategory(@PathVariable("categoryId") Long categoryId){
         categoryService.deleteCategory(categoryId);
-
+        cacheService.removeCategoryCache("categories");
         return new ResponseEntity<>("Category deleted successfully", HttpStatus.OK);  //200 ok status code
     }
     
