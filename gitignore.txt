@@ -142,3 +142,6 @@ dist
 .pnp.*
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Java,Node
+
+grocery-backend/src/main/resources/application.properties
+.properties
