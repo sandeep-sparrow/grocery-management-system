@@ -7,7 +7,7 @@ import "../css/GroceryAndCategory.css"
 export default function ListGroceryComponent() {
 
     const[groceryList, setGroceryList] = useState([]);
-    const[categories, setCategories] = useState([]);
+    const[categories, setCategories] = useState(["All"]);
     const[selectedCategoryId, setSelectedCategoryId] = useState();
 
     const navigator = useNavigate();
