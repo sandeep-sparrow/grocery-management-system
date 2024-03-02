@@ -122,7 +122,7 @@ function LoginComponent() {
                                 <div> 
                                     {invalidCredentials ? (
                                         <div className="alert alert-danger mt-2">
-                                            "Invalid Credentials, Please try again"
+                                            Invalid Credentials, Please try again
                                         </div>
                                     ) : null}
                                 </div>
