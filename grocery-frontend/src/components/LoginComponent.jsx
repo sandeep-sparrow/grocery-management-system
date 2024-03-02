@@ -1,15 +1,24 @@
-import React from "react"
+import React, { useState } from "react"
 import { useFormik } from "formik"
 import "../css/LoginRegisterComponent.css"
 import { loginAPI, saveLoggedInUser, storeToken } from "../services/AuthenticationService";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 function LoginComponent() {
+
+    const [showPassword, setShowPassword] = useState();
 
     const initialValues = {
         usernameOrEmail: "",
         password: "",
     };
+
+    function togglePasswordVisibility(){
+        setShowPassword(!showPassword);
+    }
+
     const navigator = useNavigate();
 
     const onSubmit = async (values) => {
@@ -80,7 +89,7 @@ function LoginComponent() {
                                     <div className="col-md-9">
                                         <input
                                         placeholder="Enter your password"
-                                        type="text"
+                                        type={showPassword ? "test" : "password"}
                                         className="form-control"
                                         id="password"
                                         name="password"
@@ -93,6 +102,17 @@ function LoginComponent() {
                                                 {formik.errors.password}
                                             </div>
                                         ) : null}
+                                        <FontAwesomeIcon
+                                        icon={showPassword ? faEyeSlash : faEye}
+                                        onClick={togglePasswordVisibility}
+                                        style={{
+                                            position: 'absolute',
+                                            right: '20px',
+                                            top: '52%',
+                                            transform: 'translateY(-50%)',
+                                            cursor: 'pointer',
+                                        }}
+                                        />
                                     </div>
                                 </div>
                                 <button type="submit" className="btn btn-primary">Login</button>
