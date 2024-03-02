@@ -9,6 +9,7 @@ import net.sandeep.grocery.store.model.User;
 import net.sandeep.grocery.store.repository.RoleRepository;
 import net.sandeep.grocery.store.repository.UserRepository;
 import net.sandeep.grocery.store.service.AuthenticationService;
+import net.sandeep.grocery.store.service.EmailService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,6 +29,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+    private final EmailService emailService;
 
     @Override
     public String register(RegisterDto registerDto) {
@@ -56,6 +58,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         user.setRoles(roles);
 
         userRepository.save(user);
+
+        emailService.sendSimpleMailWithAttachments(registerDto.getUsername(), registerDto.getEmail());
 
         return "User Registered Successfully!";
     }

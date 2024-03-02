@@ -22,14 +22,10 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
-    private final EmailService emailService;
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody  RegisterDto registerDto){
         String response = authenticationService.register(registerDto);
-        if(response.equals("User Registered Successfully!")){
-            emailService.sendSimpleMail(registerDto.getUsername(), registerDto.getEmail());
-        }
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 

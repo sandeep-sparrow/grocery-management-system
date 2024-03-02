@@ -13,4 +13,5 @@ public class EmailConstants {
             "using Java for the backend and React for the frontend. " +
             "The application allows users to manage grocery items, categories, and shopping lists.";
     public static final String[] CC = {"sandeep.p4856@gmail.com"};
+    public static final String UTF_8 = "UTF-8";
 }
