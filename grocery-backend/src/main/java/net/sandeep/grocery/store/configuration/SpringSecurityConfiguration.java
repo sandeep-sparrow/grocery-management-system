@@ -19,6 +19,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * @author Sandeep R P
+ * @version 1.0
+ * @license sandeep-sparrow, GITHUB
+ * @since 01/01/0001 (MM/DD/YYYY)
+ */
 @Configuration
 @EnableMethodSecurity
 @AllArgsConstructor
