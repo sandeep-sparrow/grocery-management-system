@@ -164,12 +164,12 @@ function RegisterComponent() {
                                 <div> 
                                     {registrationsuccess ? (
                                         <div className="alert alert-success mt-2">
-                                            "Registration was successful!"
+                                            Registration was successful!
                                         </div>
                                     ) : null }
                                     { registrationfailed ? (
                                         <div className="alert alert-danger mt-2">
-                                            "Registration was not successful!"
+                                            Registration was not successful!
                                         </div>
                                     ) : null}
                                 </div>
