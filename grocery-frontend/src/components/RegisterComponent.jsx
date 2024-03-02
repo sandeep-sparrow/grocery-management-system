@@ -1,9 +1,15 @@
-import React from "react"
+import React, { useState } from "react"
 import { useFormik } from "formik"
 import "../css/LoginRegisterComponent.css"
 import { registerAPI } from "../services/AuthenticationService";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 function RegisterComponent() {
+
+    const [showPassword, setShowPassword] = useState();
+    const [registrationsuccess, setRegistrationsuccess] = useState(false);
+    const [registrationfailed, setRegistrationfailed] = useState(false);
 
     const initialValues = {
         name: "",
@@ -12,14 +18,18 @@ function RegisterComponent() {
         password: "",
     };
 
+    function togglePasswordVisibility(){
+        setShowPassword(!showPassword);
+    }
+
     const onSubmit = (values) => {
-        console.log(values);
         registerAPI(values).then((response) => {
-            console.log(response);
-            alert("Registration Successful");
+            setRegistrationsuccess(true);
+            setRegistrationfailed(false);
         }).catch((error) => {
             console.log(error);
-            alert("Registration Failed");
+            setRegistrationfailed(ture);
+            setRegistrationsuccess(false);
         });
     };
 
@@ -119,10 +129,10 @@ function RegisterComponent() {
                                 </div>
                                 <div className="row mb-3">
                                     <label className="col-md-3 control-label">Password</label>
-                                    <div className="col-md-9">
+                                    <div className="col-md-9"  style={{ position: 'relative' }}>
                                         <input
                                         placeholder="Enter your password"
-                                        type="text"
+                                        type={showPassword ? "test" : "password"}
                                         className="form-control"
                                         id="password"
                                         name="password"
@@ -135,11 +145,34 @@ function RegisterComponent() {
                                                 {formik.errors.password}
                                             </div>
                                         ) : null}
+                                        <FontAwesomeIcon
+                                        icon={showPassword ? faEyeSlash : faEye}
+                                        onClick={togglePasswordVisibility}
+                                        style={{
+                                            position: 'absolute',
+                                            right: '20px',
+                                            top: '55%',
+                                            transform: 'translateY(-50%)',
+                                            cursor: 'pointer',
+                                        }}
+                                        />
                                     </div>
                                 </div>
                                 <button type="submit" className="btn btn-primary">Register</button>
+                                <a href="/login" className="text-center" style={{marginLeft: "20px"}}>Already have an account?</a>
                                 <br /> <br />
-                                <a href="/login" className="text-center">Already have an account?</a>
+                                <div> 
+                                    {registrationsuccess ? (
+                                        <div className="alert alert-success mt-2">
+                                            "Registration was successful!"
+                                        </div>
+                                    ) : null }
+                                    { registrationfailed ? (
+                                        <div className="alert alert-danger mt-2">
+                                            "Registration was not successful!"
+                                        </div>
+                                    ) : null}
+                                </div>
                             </form>
                         </div>
                     </div>
