@@ -9,6 +9,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 function LoginComponent() {
 
     const [showPassword, setShowPassword] = useState();
+    const [invalidCredentials, setInvalidCredentials] = useState(false);
 
     const initialValues = {
         usernameOrEmail: "",
@@ -32,7 +33,7 @@ function LoginComponent() {
             navigator("/grocery-items");
         }).catch((error) => {
             console.log(error);
-            alert("Login Failed, invalid Credentials");
+            setInvalidCredentials(true);
         });
     };
 
@@ -86,7 +87,7 @@ function LoginComponent() {
                                 </div>
                                 <div className="row mb-3">
                                     <label className="col-md-3 control-label">Password</label>
-                                    <div className="col-md-9">
+                                    <div className="col-md-9" style={{ position: 'relative' }}>
                                         <input
                                         placeholder="Enter your password"
                                         type={showPassword ? "test" : "password"}
@@ -108,7 +109,7 @@ function LoginComponent() {
                                         style={{
                                             position: 'absolute',
                                             right: '20px',
-                                            top: '52%',
+                                            top: '55%',
                                             transform: 'translateY(-50%)',
                                             cursor: 'pointer',
                                         }}
@@ -116,8 +117,15 @@ function LoginComponent() {
                                     </div>
                                 </div>
                                 <button type="submit" className="btn btn-primary">Login</button>
+                                <a href="/register" className="text-center" style={{marginLeft: "20px"}}>New Customer? Register!</a>
                                 <br /> <br />
-                                <a href="/register" className="text-center">New Customer? Register!</a>
+                                <div> 
+                                    {invalidCredentials ? (
+                                        <div className="alert alert-danger mt-2">
+                                            "Invalid Credentials, Please try again"
+                                        </div>
+                                    ) : null}
+                                </div>
                             </form>
                         </div>
                     </div>
