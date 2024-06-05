@@ -10,6 +10,11 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     ports:
       - '3306:3306'
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "mysql-db", "3306" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
     volumes:
       - db:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
