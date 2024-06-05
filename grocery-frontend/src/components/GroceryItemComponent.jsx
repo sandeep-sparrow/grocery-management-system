@@ -14,10 +14,10 @@ export default function GroceryItemComponent() {
     const initialValues = {
         groceryName: "",
         groceryDescription: "",
-        groceryQuantity: "",
-        groceryUnit: "",
-        groceryUnitPrice: "",
-        categoryId: "",
+        groceryQuantity: +"",
+        groceryUnit: +"",
+        groceryUnitPrice: +"",
+        categoryId: +"",
     };
 
     const onSubmit = values => {
@@ -87,8 +87,10 @@ export default function GroceryItemComponent() {
 
     useEffect(() => {
         getAllCategory().then((response) => {
-            setCategories(response.data);
-        });
+            setCategories([categories, ...response.data]);
+        }).catch((error) => {
+            console.log("Error from server: ", error);
+        })
     }, [])
 
     return (
@@ -171,14 +173,14 @@ export default function GroceryItemComponent() {
                             </div>
                             <div className="form-group mb-2">
                                 <label className="form-label">Grocery Category:</label>
-                                <select 
-                                    value={formik.values.categoryId} 
-                                    onChange={formik.handleChange} 
-                                    onBlur={formik.handleBlur} 
-                                    name="categoryId" 
+                                <select
+                                    value={formik.values.categoryId}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    name="categoryId"
                                     className="form-select mb-2"
                                 >
-                                {categories.map(category => (
+                                {categories.map((category) => (
                                     <option key={category.categoryId} value={category.categoryId}>
                                         {category.categoryName}
                                     </option>
