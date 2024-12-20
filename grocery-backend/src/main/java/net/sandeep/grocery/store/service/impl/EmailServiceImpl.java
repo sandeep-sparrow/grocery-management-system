@@ -5,14 +5,14 @@ import net.sandeep.grocery.store.service.EmailService;
 import net.sandeep.grocery.store.utility.EmailConstants;
 import net.sandeep.grocery.store.utility.EmailUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.util.Objects;
 
 
@@ -71,22 +71,13 @@ public class EmailServiceImpl implements EmailService {
                     username, EmailConstants.REGISTRATION_EMAIL_BODY,
                     host, "12345"));
             // Add Attachment
-            FileSystemResource myPic =
-                    new FileSystemResource(
-                            new File(System.getProperty("user.home") +
-                                    "/Downloads/images/my-pic.jpg"));
-            FileSystemResource dhairya =
-                    new FileSystemResource(
-                            new File(System.getProperty("user.home") +
-                                    "/Downloads/images/dhairya_born_day.docx"));
-            FileSystemResource cover =
-                    new FileSystemResource(
-                            new File(System.getProperty("user.home") +
-                                    "/Downloads/images/linked-cover.png"));
+            Resource myPic = new ClassPathResource("static/images/my-pic.jpg");
+            Resource veerMaharaj = new ClassPathResource("static/images/veer-maharaj.jpg");
+            Resource blinkit = new ClassPathResource("static/images/blinkit.jpg");
 
             helper.addAttachment(Objects.requireNonNull(myPic.getFilename()), myPic);
-            helper.addAttachment(Objects.requireNonNull(dhairya.getFilename()), dhairya);
-            helper.addAttachment(Objects.requireNonNull(cover.getFilename()), cover);
+            helper.addAttachment(Objects.requireNonNull(veerMaharaj.getFilename()), veerMaharaj);
+            helper.addAttachment(Objects.requireNonNull(blinkit.getFilename()), blinkit);
 
             javaMailSender.send(message);
         }catch (Exception ex){
