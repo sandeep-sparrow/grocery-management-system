@@ -35,4 +35,3 @@ build/
 
 *.properties
 *.xml
-/grocery-backend/src/main/java/net/sandeep/grocery/store/configuration/EmailConfiguration.java
